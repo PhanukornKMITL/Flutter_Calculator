@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'button_generator.dart';
+
 
 class CalculatorPage extends StatefulWidget {
   @override
@@ -61,36 +63,18 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
                       Padding(
                         padding: EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
-                            setState(() {
-                              operationText = "";
-                              result = "";
-                            });
-                            },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "AC",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                        child: ButtonGenerator(
+                          btnFunction: (){
+                            print("y");
+                          },
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
-                            setState(() {
-                              operationText = operationText.substring(0, operationText.length-1);
-                            });
-
+                        child: ButtonGenerator(
+                          btnFunction: (){
+                            print("x");
                           },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Icon(Icons.backspace_outlined,size: 35,),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
                         ),
                       ),
                       Padding(

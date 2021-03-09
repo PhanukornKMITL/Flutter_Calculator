@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'calculator.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class CalculatorPage extends StatefulWidget {
@@ -22,7 +21,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.tealAccent[400],
       body: Column(
         children: <Widget>[
           Container(
@@ -72,12 +71,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              operationText = operationText.substring(0, operationText.length-1);
+                            });
+
+                          },
                           elevation: 2.0,
                           fillColor: Colors.grey[350],
-                          child: Text(
-                            "+/-",style: TextStyle(fontSize: 30),
-                          ),
+                          child: Icon(Icons.backspace_outlined,size: 35,),
                           padding: EdgeInsets.all(15.0),
                           shape: CircleBorder(),
                         ),
@@ -85,7 +87,16 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                            if(operationText.isNotEmpty){
+                              setState(() {
+                                operationText += "%";
+                              });
+                            }
+
+
+                          },
                           elevation: 2.0,
                           fillColor: Colors.grey[350],
                           child: Text(
@@ -98,7 +109,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if(operationText.isNotEmpty){
+                              setState(() {
+                                operationText += "/";
+                              });
+                            }
+                          },
                           elevation: 2.0,
                           fillColor: Colors.grey[350],
                           child: Text(
@@ -172,8 +189,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         child: RawMaterialButton(
                           onPressed: () {
                             setState(() {
-                              if(operationText.isNotEmpty)
-                              operationText += "*";
+                              if(operationText.isNotEmpty){
+                                setState(() {
+                                  operationText += "*";
+                                });
+                              }
                             });
                           },
                           elevation: 2.0,
@@ -248,8 +268,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         child: RawMaterialButton(
                           onPressed: () {
                             setState(() {
-                              if(operationText.isNotEmpty)
-                                operationText += "-";
+                              if(operationText.isNotEmpty){
+                                setState(() {
+                                  operationText += "-";
+                                });
+                              }
                             });
                           },
                           elevation: 2.0,
@@ -324,8 +347,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         child: RawMaterialButton(
                           onPressed: () {
                             setState(() {
-                              if(operationText.isNotEmpty)
-                                operationText += "+";
+                              if(operationText.isNotEmpty){
+                                setState(() {
+                                  operationText += "+";
+                                });
+                              }
 
                             });
                           },
@@ -387,14 +413,24 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       ),
                       RawMaterialButton(
                         onPressed: () {
-                          Parser p = Parser();
-                          Expression exp = p.parse(operationText);
-                          ContextModel cm = ContextModel();
-                          double eval = exp.evaluate(EvaluationType.REAL, cm);
+                          try{
+                            Parser p = Parser();
+                            Expression exp = p.parse(operationText);
+                            ContextModel cm = ContextModel();
+                            double eval = exp.evaluate(EvaluationType.REAL, cm);
+                            setState(() {
+                              result = eval.toString();
 
-                          setState(() {
-                            result = eval.toString();
-                          });
+                            });
+                          }catch(e){
+                            setState(() {
+                              result = "Error";
+                            });
+
+                          }
+
+
+
                         },
                         elevation: 2.0,
                         fillColor: Colors.grey[350],

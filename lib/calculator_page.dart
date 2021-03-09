@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'calculator.dart';
 
 class CalculatorPage extends StatefulWidget {
   @override
@@ -8,8 +9,14 @@ class CalculatorPage extends StatefulWidget {
 
 class _CalculatorPageState extends State<CalculatorPage> {
 
-  String operationText;
-  String result;
+  String operationText = "";
+  String result = "";
+  Calculator _calculator = Calculator();
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(28.0),
-                child: Text('Number', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.black),),
+                child: Text('$operationText', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.black),),
               ),
             ),),
 
@@ -30,7 +37,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             alignment: Alignment.centerRight,
             child: Padding(
               padding: const EdgeInsets.all(28.0),
-              child: Text('Result', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.black),),
+              child: Text('$result', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.black),),
             ),),
           SizedBox(height: 150,),
           Expanded(
@@ -46,7 +53,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              _calculator.clear();
+                              operationText = "";
+                              result = "";
+                            });
+                            },
                           elevation: 2.0,
                           fillColor: Colors.grey[350],
                           child: Text(
@@ -105,7 +118,10 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                                operationText += "7";
+                          });},
                           elevation: 2.0,
                           fillColor: Colors.grey[350],
                           child: Text(
@@ -118,7 +134,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                          setState(() {
+                          operationText += "8";
+                          });
+                          },
                           elevation: 2.0,
                           fillColor: Colors.grey[350],
                           child: Text(
@@ -131,7 +151,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                          setState(() {
+                          operationText += "9";
+                          });
+                          },
+
                           elevation: 2.0,
                           fillColor: Colors.grey[350],
                           child: Text(
@@ -144,7 +169,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
                         child: RawMaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              if(operationText.isNotEmpty)
+                              operationText += "x";
+                            });
+                          },
                           elevation: 2.0,
                           fillColor: Colors.grey[350],
                           child: Text(

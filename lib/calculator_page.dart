@@ -21,28 +21,37 @@ class _CalculatorPageState extends State<CalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent[400],
+
       body: Column(
         children: <Widget>[
-          Container(
-            alignment: Alignment.centerRight,
-            child: SafeArea(
+          Expanded(
+            flex: 2,
+            child: Container(
+              alignment: Alignment.centerRight,
+              color: Colors.tealAccent,
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(28.0),
+                  child: Text('$operationText', style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold, color: Colors.white,letterSpacing: 2),),
+                ),
+              ),),
+          ),
+
+          Expanded(
+            flex: 1,
+            child: Container(
+              alignment: Alignment.centerRight,
+              color: Colors.tealAccent[100],
               child: Padding(
                 padding: const EdgeInsets.all(28.0),
-                child: Text('$operationText', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.black),),
-              ),
-            ),),
+                child: Text('$result', style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 2),),
+              ),),
+          ),
 
-          Container(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: const EdgeInsets.all(28.0),
-              child: Text('$result', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.black),),
-            ),),
-          SizedBox(height: 150,),
           Expanded(
+            flex: 4,
             child: Container(
-              color: Colors.pinkAccent[100],
+              color: Colors.white,
               child: Column(
                 children: [
                   Row(

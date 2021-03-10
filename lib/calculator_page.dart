@@ -65,57 +65,51 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         padding: EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
                         child: ButtonGenerator(
                           btnFunction: (){
-                            print("y");
+                            setState(() {
+                              operationText = "";
+                              result = "";
+                            });
+
                           },
+                          text: "AC",
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
                         child: ButtonGenerator(
                           btnFunction: (){
-                            print("x");
+                            setState(() {
+                              operationText = operationText.substring(0,operationText.length-1);
+                            });
                           },
+                          text: "Del",
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
-
+                        child: ButtonGenerator(
+                          btnFunction: (){
                             if(operationText.isNotEmpty){
                               setState(() {
                                 operationText += "%";
                               });
                             }
-
-
                           },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "%",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                          text: "%",
                         ),
+
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child: ButtonGenerator(
+                          btnFunction: (){
                             if(operationText.isNotEmpty){
                               setState(() {
                                 operationText += "/";
                               });
                             }
                           },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "/",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                          text: "/",
                         ),
                       ),
                     ],
@@ -127,75 +121,47 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
                       Padding(
                         padding: EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child: ButtonGenerator(
+                          text: "7",
+                          btnFunction: () {
                             setState(() {
-                                operationText += "7";
-
-                          });},
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "7",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                              operationText += "7";
+                            });},
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
-                          setState(() {
-                          operationText += "8";
-                          });
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "8",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
-                          setState(() {
-                          operationText += "9";
-                          });
-                          },
-
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "9",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child:ButtonGenerator(
+                          text: "8",
+                          btnFunction: () {
                             setState(() {
-                              if(operationText.isNotEmpty){
-                                setState(() {
-                                  operationText += "*";
-                                });
-                              }
-                            });
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "*",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                              operationText += "8";
+                            });},
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
+                        child: ButtonGenerator(
+                          text: "9",
+                          btnFunction: () {
+                            setState(() {
+                              operationText += "9";
+                            });},
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
+                        child: ButtonGenerator(
+                          text: "*",
+                          btnFunction: () {
+                            if (operationText.isNotEmpty) {
+                              setState(() {
+                                operationText += "*";
+                              });
+
+                            }
+                          }
+
                         ),
                       ),
                     ],
@@ -207,74 +173,45 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
                       Padding(
                         padding: EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child: ButtonGenerator(
+                          text: "4",
+                          btnFunction: () {
                             setState(() {
-                                operationText += "4";
-                            });
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "4",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                              operationText += "4";
+                            });},
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child: ButtonGenerator(
+                          text: "5",
+                          btnFunction: () {
                             setState(() {
-                                operationText += "5";
-                            });
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "5",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                              operationText += "5";
+                            });},
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child: ButtonGenerator(
+                          text: "6",
+                          btnFunction: () {
                             setState(() {
-                                operationText += "6";
-                            });
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "6",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                              operationText += "6";
+                            });},
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
-                            setState(() {
-                              if(operationText.isNotEmpty){
-                                setState(() {
-                                  operationText += "-";
-                                });
-                              }
-                            });
+                        child: ButtonGenerator(
+                          text: "-",
+                          btnFunction: (){
+                            if(operationText.isNotEmpty){
+                              setState(() {
+                                operationText += "-";
+                              });
+                            }
                           },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "-",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
                         ),
                       ),
                     ],
@@ -286,75 +223,45 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
                       Padding(
                         padding: EdgeInsets.fromLTRB(20.0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child: ButtonGenerator(
+                          text: "1",
+                          btnFunction: () {
                             setState(() {
-                                operationText += "1";
-                            });
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "1",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                              operationText += "1";
+                            });},
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child: ButtonGenerator(
+                          text: "2",
+                          btnFunction: () {
                             setState(() {
-                                operationText += "2";
-                            });
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "2",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                              operationText += "2";
+                            });},
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
+                        child: ButtonGenerator(
+                          text: "3",
+                          btnFunction: () {
                             setState(() {
-                                operationText += "3";
-                            });
-                          },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "3",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
+                              operationText += "3";
+                            });},
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
-                        child: RawMaterialButton(
-                          onPressed: () {
-                            setState(() {
-                              if(operationText.isNotEmpty){
-                                setState(() {
-                                  operationText += "+";
-                                });
-                              }
-
-                            });
+                        child: ButtonGenerator(
+                          text: "+",
+                          btnFunction: (){
+                            if(operationText.isNotEmpty){
+                              setState(() {
+                                operationText += "+";
+                              });
+                            }
                           },
-                          elevation: 2.0,
-                          fillColor: Colors.grey[350],
-                          child: Text(
-                            "+",style: TextStyle(fontSize: 30),
-                          ),
-                          padding: EdgeInsets.all(15.0),
-                          shape: CircleBorder(),
                         ),
                       ),
                     ],
@@ -389,20 +296,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           },
                         ),
                       ),
-                      RawMaterialButton(
-                        onPressed: () {
-                          setState(() {
-                            if(operationText.isNotEmpty)
+                      ButtonGenerator(
+                        text: ".",
+                        btnFunction: (){
+                          if(operationText.isNotEmpty){
+                            setState(() {
                               operationText += ".";
-                          });
+                            });
+                          }
                         },
-                        elevation: 2.0,
-                        fillColor: Colors.grey[350],
-                        child: Text(
-                          ".",style: TextStyle(fontSize: 30),
-                        ),
-                        padding: EdgeInsets.all(15.0),
-                        shape: CircleBorder(),
                       ),
                       RawMaterialButton(
                         onPressed: () {
